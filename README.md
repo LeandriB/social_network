@@ -76,4 +76,5 @@ This application is licensed under the MIT License.
 
 ## Resources
 
+* Base [Code](https://github.com/LeandriB/pizza_hunt) of code from examples in Module 18. 
 * [Boostrap](https://getbootstrap.com/) for layout and frontend
