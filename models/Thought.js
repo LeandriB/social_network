@@ -32,6 +32,18 @@ const ThoughtSchema = new Schema({
         get: (time) => formatDate(time)
     },
     reactions: [ReactionSchema]
+    },
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true,
+        },
+        id: false,
+    }
+);
+
+ThoughtSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
 });
 
 const Thought = model('Pizza', ThoughtSchema);
