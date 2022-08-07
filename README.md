@@ -76,6 +76,8 @@ This application is licensed under the MIT License.
 
 ## Resources
 
-* Base [Code](https://github.com/LeandriB/pizza_hunt) of code from examples in Module 18. 
+* Base of [Code](https://github.com/LeandriB/pizza_hunt) from examples in Module 18. 
 * [Boostrap](https://getbootstrap.com/) for layout and frontend
 * [Mongoose Virtuals](https://mongoosejs.com/docs/tutorials/virtuals.html)
+* [Mongoose Email validation](https://masteringjs.io/tutorials/mongoose/mongoose-validate-unique-email)
+* [ObjectID](https://www.mongodb.com/docs/manual/reference/method/ObjectId/)

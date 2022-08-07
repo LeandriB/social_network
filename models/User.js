@@ -4,20 +4,24 @@ const UserSchema = new Schema(
     {
         username: {
             type: String,
+            required: true,
+            trim: true
         },
         email: {
             type: String,
-            // TODO: add matching validation for mongoose
+            required: true,
+            match: [/.+\@.+\..+/],
+            unique: true, // noted not a validator - specifies each needs to be unique
         },
         thoughts: [
             {
-                type: Schema.Types.Object,
+                type: Schema.Types.ObjectId,
                 ref: 'Thought',
             }
         ],
         friends: [
             {
-                type: Schema.Types.Object,
+                type: Schema.Types.ObjectId,
                 ref: 'User',
             }
         ]
