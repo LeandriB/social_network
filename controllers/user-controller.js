@@ -8,6 +8,10 @@ const userController = {
             path: 'thoughts', 
             select: '-__v'
         })
+        .populate({ 
+            path: 'friends',
+            select: '-__v'
+        })
         .select('-__v')
         .then(data => res.json(data))
         .catch(err => 
@@ -21,6 +25,10 @@ const userController = {
             path: 'thoughts', 
             select: '-__v', 
             populate: { path: 'reactions'}
+        })
+        .populate({ 
+            path: 'friends', 
+            select: '-__v'
         })
         .select('-__v')
         .then(data => res.json(data))
@@ -55,7 +63,35 @@ const userController = {
             res.status(400).json(err))
     },
 
-    //TODO: Add friends and Delete friends
+    // add a friend
+    addFriend({ params }, res) {
+        User.findOneAndUpdate({ 
+            _id: params.userId }, 
+            { $push: {
+                friends: params.friendId 
+            } 
+        }, { new: true, runValidators: true })
+        .then(data => res.json(data))
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err)
+        });
+    },
+
+    // remove a friend
+    deleteFriend({ params }, res) {
+        User.findOneAndDelete({
+            _id: params.userId}, 
+            { $pull: {
+                friends: params.friendId
+            } 
+        })
+        .then(data => res.json(data))
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err)
+        });
+    }
 }
 
 module.exports = userController
