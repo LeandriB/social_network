@@ -76,9 +76,40 @@ const thoughtController = {
         res.json(data);
         })
         .catch(err => res.status(400).json(err));
+    },
+    // add a reaction
+    addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate({ 
+            _id: params.thoughId},
+            { $push: { 
+                reactions: { 
+                    reactionBody: body.reactionBody, 
+                    username: body.username
+                } 
+            } 
+        }, { new: true, runValidators: true })
+        .then(data => res.json(data))
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err)
+        });
+    },
+    // delete a reaction
+    deleteReaction({params}, res) {
+        Thought.findOneAndDelete({ 
+            _id: params.thoughtId}, 
+            { $pull: { 
+                reactions: { 
+                    _id: params.reactionId
+                } 
+            } 
+        }, { new: true, runValidators: true})
+        .then(data => res.json(data))
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err)
+        });
     }
-
-    //TODO: add reactions and delete reaction
 }
 
 module.exports = thoughtController;
