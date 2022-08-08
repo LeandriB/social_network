@@ -2,35 +2,48 @@ const { Schema, model } = require('mongoose');
 const formatDate = require('../utils/formatter');
 
 const ReactionSchema =  new Schema({
-    reactionId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
+        reactionId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
+        },
+        reactionBody: {
+            type: String,
+            required: true,
+            maxLength: 300
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: (time) => formatDate(time)
+        }
     },
-    reactionBody: {
-        type: String
-    },
-    username: {
-        type: String
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (time) => formatDate(time)
-    },
-})
+    {
+        toJSON: {
+            getters: true
+        }
+    }
+)
 
 const ThoughtSchema = new Schema({
     thoughtText: {
-        type: String
+        type: String,
+        required: true,
+        maxLength: 300
     },
     username: {
-        type: String
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,
         default: Date.now,
         get: (time) => formatDate(time)
     },
+    // validates data for a reply
     reactions: [ReactionSchema]
     },
     {
@@ -46,6 +59,6 @@ ThoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
 });
 
-const Thought = model('Pizza', ThoughtSchema);
+const Thought = model('Thought', ThoughtSchema);
 
 module.exports = Thought;
