@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const formatDate = require('../utils/formatter');
+const formatDate = require('../utils/format');
 
 const ReactionSchema =  new Schema({
         reactionId: {

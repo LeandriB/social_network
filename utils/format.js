@@ -19,7 +19,7 @@ const createDate = date => {
 
   // function to format a timestamp this accepts the 
   // timestamp and an object as optional parameters
-    module.exports = (
+module.exports = (
         timestamp,
         { monthLength = 'short', date = true } = {}
     ) => {
@@ -93,7 +93,7 @@ const createDate = date => {
             timeOfDay = 'am';
         }
     
-        const timestamp = `${monthFormatted} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${timeOfDay}`;
+        const timestampFormatted = `${monthFormatted} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${timeOfDay}`;
     
-    return timestamp;
+    return timestampFormatted;
 };
