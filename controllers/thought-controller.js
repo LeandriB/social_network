@@ -1,4 +1,4 @@
-const Thought = require("../models");
+const { Thought, User } = require("../models");
 
 const thoughtController = {
     // Retrieve all thoughts from db
@@ -16,7 +16,7 @@ const thoughtController = {
         });
     },
     // Retrieve a thought by its id
-    getThought(req, res) {
+    getThought({params}, res) {
         Thought.findOne({_id: params.id})
         .populate({ 
             path: 'reactions',
@@ -42,11 +42,10 @@ const thoughtController = {
             thoughtText: body.thoughtText, 
             username: body.username 
         })
-        .populate({ 
-            path: 'reactions', 
-            select: '-__v' 
-        })
-        .select('-__v')
+        .then(({_id}) => User.findOneAndUpdate(
+            { _id: body.userId}, 
+            { $push: { thoughts: _id } }, 
+            { new: true }))
         .then(data => res.json(data))
         .catch(err => {
             console.log(err);
@@ -79,8 +78,8 @@ const thoughtController = {
     },
     // add a reaction
     addReaction({ params, body }, res) {
-        Thought.findOneAndUpdate({ 
-            _id: params.thoughId},
+        Thought.findOneAndUpdate(
+            { _id: params.thoughId},
             { $push: { 
                 reactions: { 
                     reactionBody: body.reactionBody, 
@@ -96,8 +95,8 @@ const thoughtController = {
     },
     // delete a reaction
     deleteReaction({params}, res) {
-        Thought.findOneAndDelete({ 
-            _id: params.thoughtId }, 
+        Thought.findOneAndDelete(
+            { _id: params.thoughtId }, 
             { $pull: { 
                 reactions: { 
                     _id: params.reactionId
