@@ -6,6 +6,7 @@
 - [Acceptance Criteria](#acceptance-criteria)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Preview](#preview)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [License](#license)
@@ -44,6 +45,10 @@ Run the following command in your terminal in order to install all the packages:
 Start the node application by running: 
 
 `npm start`
+
+## Preview
+
+Check out the link to the walkthrough video [here](https://youtu.be/Syh4W6FOu-U).
 
 ## Contributing
 
