@@ -6,7 +6,6 @@
 - [Acceptance Criteria](#acceptance-criteria)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Preview](#preview)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [License](#license)
@@ -46,12 +45,6 @@ Start the node application by running:
 
 `npm start`
 
-## Preview
-
-![Preview](./public/images/preview.png)
-
-Check out the deployed application [here](https://listeninlistenin.herokuapp.com/).
-
 ## Contributing
 
 In order to contribute, create a pull request and follow the steps listed below:
@@ -81,3 +74,4 @@ This application is licensed under the MIT License.
 * [Mongoose Virtuals](https://mongoosejs.com/docs/tutorials/virtuals.html)
 * [Mongoose Email validation](https://masteringjs.io/tutorials/mongoose/mongoose-validate-unique-email)
 * [ObjectID](https://www.mongodb.com/docs/manual/reference/method/ObjectId/)
+* [Fixing Deleting Reaction Error](https://stackoverflow.com/questions/66370059/findoneandupdate-callback-must-be-a-function-got-object-object-nodejs-mon)
